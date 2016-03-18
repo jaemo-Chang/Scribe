@@ -1,0 +1,13 @@
+{
+  "name": "Scribe",
+  "version": "0.0.1",
+  "description": "A Customizable Writing Program",
+  "devDependencies": {
+    "electron-prebuilt": "^0.37.2",
+    "electron-rebuild": "^1.1.3"
+  },
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  }
+}
