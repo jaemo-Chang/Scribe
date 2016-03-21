@@ -7,16 +7,47 @@
     <script src="node_modules/.bin/interact.js"></script>
 </head>
 <body>
-</section id = "parent">
-<canvas class="layout", id="grid"></canvas>
-<div id="drag-1" class="draggable">
-    <p> You can drag one element </p>
+<script>
+    global_width = window.innerWidth;
+    global_height = window.innerHeight;
+    cell_offset = 5;
+    cell_width = global_width/8-cell_offset;
+    cell_height = global_height/5-cell_offset;
+</script>
+<div id = "parent">
+    <canvas class="layout", id="grid", visibility="hidden"></canvas>
+    <div id="a", class="widget">a</div>
+    <div id="b", class="widget">b</div>
+    <div id="c", class="widget">c</div>
+    <div id="d", class="widget">d</div>
+    <div id="e", class="widget">e</div>
+    <div id="f", class="widget">f</div>
+    <div id="g", class="widget">g</div>
+    <div id="h", class="widget">h</div>
 </div>
-<div id="drag-2" class="draggable">
-    <p> with each pointer </p>
-</div>
-<section>
-<script src="scripts/gridDraw.js"></script>
-<script src="scripts/dragModule.js"></script>
+<script src="scripts/grid_layout.js"></script>
+<script src="scripts/drag_module.js"></script>
+<script>
+    var widget = document.getElementsByClassName("widget");
+    var c = 0, r = 0;
+    for(var i = 0; i<widget.length; i++){
+        widget[i].style.width =  cell_width + "px";
+        widget[i].style.height = cell_height + "px";
+
+        if(r > 4){
+            c++;
+            r = 0;
+        }
+
+        var x = find_x_of(c);
+        var y = find_y_of(r);
+
+        r++;
+
+        widget[i].style.left = x + "px";
+        widget[i].style.top = y + "px";
+        //widget[i].style.webkitTransform = widget[i].style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+    }
+</script>
 </body>
 </html>

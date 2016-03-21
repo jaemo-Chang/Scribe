@@ -35,7 +35,7 @@ var drawGrid = function(w, h, id) {
     ctx.color = '#ffffff';
     ctx.canvas.width  = w;
     ctx.canvas.height = h;
-    ctx.strokeStyle = '#ffffff';
+    ctx.strokeStyle = '#d4d4d4';
     //ctx.lineWidth = 1;
     ctx.stroke();
 
@@ -52,5 +52,49 @@ var drawGrid = function(w, h, id) {
     //canvas.style.transform = "scale3d(0.5,0.5,0)";
 };
 
-drawGrid(window.innerWidth, window.innerHeight, "grid");
-//var canvas = createHiDPICanvas(500, 250,1);
+function find_x_of(column){
+    return column*(cell_width+cell_offset) + 2;
+}
+
+function find_y_of(row){
+    return row*(cell_height+cell_offset) + 2;
+}
+
+
+function find_row_of(y){
+    return Math.round(y/cell_height);
+}
+
+function find_column_of(x){
+    return Math.round(x/cell_width);
+}
+
+function detect_collision_at(element, c,r){
+    var widget = document.getElementsByClassName("widget");
+
+    console.debug("Checking : " + c + "," + r);
+    for(var i = 0; i<widget.length; i++){
+
+        var viewportOffset = widget[i].getBoundingClientRect();
+        var y = viewportOffset.top || 0;
+        var x = viewportOffset.left || 0;
+
+        var col = find_column_of(x);
+        var row = find_row_of(y);
+
+        console.debug("Current : " + col +", " + row)
+        if(col == c && row == r && element.id != widget[i].id) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function toggle(visibility){
+    var canvas = document.getElementById("grid");
+    if(visibility) canvas.style.visibility="visible";
+    else canvas.style.visibility="hidden";
+}
+
+drawGrid(global_width, global_height, "grid");
+toggle(false);

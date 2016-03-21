@@ -3,30 +3,36 @@
     padding: 0;
 }
 
+body{
+    background-image: url("../assets/a.png");
+    display: block;
+    width:5px;
+    height:5px;
+}
+
 #parent{
-    width: 100%;
-    height: 100%;
     border: none;
     z-index: -1;
     overflow: hidden;
 }
 
 .layout{
-    background-color: dodgerblue;
+    position:absolute;
+
+    background-color: rgba(255, 242, 249, 0);
     display: block;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    overflow:hidden;
 }
 
-#drag-1, #drag-2 {
-    width: 25%;
-    height: 25%;
-    min-height: 6.5em;
-    margin: 10%;
-
-    background-color: #ee8b4b;
+.widget {
+    text-align: center;
+    background-color: rgba(81, 111, 162, 0.46);
     color: white;
-
-    border-radius: 0.75em;
-    padding: 4%;
+    position: absolute;
 
     -webkit-transform: translate(0px, 0px);
     transform: translate(0px, 0px);
